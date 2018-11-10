@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GamesBacklog.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamesBacklog.Web.Controllers
@@ -11,19 +12,31 @@ namespace GamesBacklog.Web.Controllers
     {
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Game> Get()
         {
-            return new string[] {
-                "value1",
-                "value2"
+            return new List<Game>() {
+                new Game() {
+                    Id = 1,
+                    Title = "Super Mario Bros.",
+                    ReleaseDate = new DateTime(1985, 9, 13),
+                },
+                new Game() {
+                    Id = 2,
+                    Title = "The Legend of Zelda",
+                    ReleaseDate = new DateTime(1986, 2, 21),
+                },
             };
         }
 
         // GET api/<controller>/5
         [HttpGet("{id:int}")]
-        public string Get(int id)
+        public Game Get(int id)
         {
-            return $"value{id}";
+            return new Game() {
+                Id = id,
+                Title = "Super Mario Bros.",
+                ReleaseDate = new DateTime(1985, 9, 13),
+            };
         }
 
         // POST api/<controller>
